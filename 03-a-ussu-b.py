@@ -31,6 +31,6 @@ b       counter     log(b) (2 tabanında)
 32      6           5
 64      7           6
 
-
+karmaşıklık --> O(logn)
 
 '''

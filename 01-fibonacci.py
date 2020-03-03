@@ -44,5 +44,5 @@ fib <-  n   -> counter
         12  -> 11
         13  -> 12
 
-karmaşıklık -> O(2^n)
+karmaşıklık -> O(n)
 '''
