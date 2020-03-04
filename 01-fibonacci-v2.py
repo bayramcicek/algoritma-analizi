@@ -1,11 +1,13 @@
 #!/usr/bin/python3.6
 # created by cicek on Mar 03, 2020 16:35
 
+
 counter = 0
 
 
 def fib_2(n):
     global counter
+
     if n < 2:
         counter += 1
         return n
@@ -14,19 +16,24 @@ def fib_2(n):
         b = 1
         c = a + b
         s = 1
+
         while (s < n):
             c = a + b
             a = b
             b = c
             s += 1
             counter += 1
+
         return c
 
 
 n = 10
 result = fib_2(n)
+
 print(result)
 # print(counter)
+
+
 '''
 fib <-  n   -> counter
 0       00  -> 1

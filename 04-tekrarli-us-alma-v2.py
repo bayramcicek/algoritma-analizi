@@ -5,23 +5,26 @@
 counter = 0
 
 
-def fun2(a, b):
+def power_recursive(a, b):
     global counter
     counter += 1
+
     if b == 0:
         return 1
     elif b == 1:
         return a
     else:
-        return fun2(a * a, b / 2)
+        return power_recursive(a * a, b / 2)
 
 
-a, b = 2, 16 # b --> 2, 4, 8, 16, 32, 64 ... atayınız
-result = fun2(a, b)
+a, b = 2, 16  # b --> 2, 4, 8, 16, 32, 64 ... atayınız
+result = power_recursive(a, b)
+
 # print(result)
 print(counter)
+
 '''
-b       counter     log(b) (2 tabanında)
+b       counter     log(n) (2 tabanında)
 0       1           - 
 1       1           0
 2       2           1

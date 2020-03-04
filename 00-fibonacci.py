@@ -1,6 +1,7 @@
 #!/usr/bin/python3.6
 # created by cicek on Mar 03, 2020 14:48
 
+
 counter = 0
 
 
@@ -8,6 +9,7 @@ def fib_1(n):
     # print(n)
     global counter
     counter += 1
+
     if n < 2:
         return n
 
@@ -17,6 +19,7 @@ def fib_1(n):
 
 n = 10  # kaçıncı sıradaki fib sayısı -> 1 1 2 3 5 8 13...
 result = fib_1(n)
+
 print(result)
 # print(counter)
 
