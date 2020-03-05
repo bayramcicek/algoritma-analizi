@@ -53,3 +53,5 @@ list = [4, -3, 5, -2, -1, 2, 6, -2]
 
 result = alt_kume_agac(list)
 print(result)  # 11
+
+# O(nlogn)
