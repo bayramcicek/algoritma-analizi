@@ -38,5 +38,5 @@ for number in list:
 # sayı: 311 (True, 309)
 # sayı: 49 (False, 6)
 
-# sayi 2'nin katı ise karmaşıklık -> O(1)
+# sayi 2'nin katı ise best case -> O(1)
 # tek ise yaklaşık -> O(n)
