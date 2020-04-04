@@ -1,0 +1,8 @@
+içerik adı : ikili arama
+yayın : 21 Mart 2020
+
+ikili arama ve medyan bulma algoritmalarını gönderiyorum
+kaynak geekforgeek üzerinden de açıklamaları okuyup kodları çalıştırabilirsiniz.
+
+- karmaşıklık binary search için O(log n) - best case O(1)
+- median için sıralama yapılması veya frekans tablosundan bulunması gerekliliğinden karmaşıklığı fazladır
