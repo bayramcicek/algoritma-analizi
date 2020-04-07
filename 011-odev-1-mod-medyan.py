@@ -22,7 +22,7 @@ def getModeMedian(list_1):
 
 
 # O(n^2) + O(1) + O(n) + O(n) -> (n^2 + 2n + 1) olduğundan
-# get_mode_median(list) ortalama karmaşıklık (average case) -> O(n^2) olduğunu tahmin ediyorum.
+# get_mode_median(list) ortalama karmaşıklık (average case) -> O(n^2) olması gerek.
 def get_mode_median(list):
     uzunluk = len(list)
     mode = -1
