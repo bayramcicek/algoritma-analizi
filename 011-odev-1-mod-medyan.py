@@ -3,6 +3,8 @@
 
 import random
 
+# amortized cost: (The growing can be a O(n) operation, but amortized is O(1) because you do it rarely.)
+
 '''
 - ödev 1 mode medyan karmaşıklığı
 Due April 05 at 11:59 PM
