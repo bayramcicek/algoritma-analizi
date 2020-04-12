@@ -9,6 +9,7 @@ def my_binary_search(my_list, item_search):
     while low <= high:
         mid = (low + high) // 2
         print(my_list[mid])
+
         if my_list[mid] == item_search:
             return my_list[mid], mid
         elif my_list[mid] > item_search:
