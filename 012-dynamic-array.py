@@ -24,7 +24,7 @@ Yani bir ABS'nin iç yapısı son kullanıcıya kapalıdır(internal)
 - Amortized cost için array yapısı olması gerekiyor.
 
 - Bütün veri yapılarının teml fonksiyonları tanımlanmıştır
-    fakat iç yapısı tanımlı değildir. iç yapı tamammen geliştiricinin tercihidir.
+    fakat iç yapısı tanımlı değildir. iç yapı tamamen geliştiricinin tercihidir.
 
 - Array varsa mutlaka amortized karmaşıklıktan bahsetmek gerekiyor.
     örneğin insert için sırasıyla karmaşıklık 1, 1, 1, ... oldu fakat
