@@ -3,7 +3,7 @@
  */
 
 /*
-160401002 - Bayram Çiçek
+160401002 - Bayram Çiçek - hafta-2 ödev
 
 Konu : dynamic array – amortized cost
 Teslim tarihi : 14 nisan 15:00 , hem sisteme hemde github a yüklenecek
