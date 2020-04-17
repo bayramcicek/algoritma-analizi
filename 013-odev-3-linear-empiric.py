@@ -5,7 +5,7 @@ import random
 import matplotlib.pyplot as plt
 
 '''
-Bayram Çiçek - 160401002
+Bayram Çiçek - 160401002 - linear search empiric study
 
 Due April 17 at 11:59 PM
 konu: week_3_deneysel analiz uygulaması linear/binary search
@@ -61,7 +61,7 @@ def my_linear_search(my_list, item_search):
 # Process finished with exit code 0
 # '''
 
-def my_experimental_study(iter_num=50):
+def my_experimental_study_linear(iter_num=50):
     x_low = -100
     x_high = 100
     array_size = 40
@@ -85,7 +85,7 @@ def my_experimental_study(iter_num=50):
     return cost
 
 
-res = my_experimental_study()
+res = my_experimental_study_linear()
 print(res)
 
 '''
@@ -149,7 +149,8 @@ array size:  40
 Process finished with exit code 0
 
 '''
+
 plt.plot(res)
 
 # sudo apt install python3-tk (grafiğin gösterilmesi için indir)
-plt.show()  # Figure_1.png
+plt.show()  # Figure_1_linear.png
