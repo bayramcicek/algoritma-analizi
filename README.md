@@ -1,5 +1,15 @@
 ## algoritma analizi ders kodları - bahar 2020
 ---
+### doğrusal arama - deneysel çalışma grafiği:
+
+![dogrusal_arama](Figure_1_linear.png)
+
+---
+### ikili arama - deneysel çalışma grafiği:
+
+![ikili_arama](Figure_2_binary.png)
+
+---
 ### 2ⁿ grafiği (y=2^x):
 
 ![2ⁿ grafiği](000-fibonacci-grafik-2-uzeri-n.png)
