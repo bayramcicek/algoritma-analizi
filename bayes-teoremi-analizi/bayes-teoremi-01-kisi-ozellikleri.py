@@ -280,8 +280,8 @@ class Classifier:
         prob_sum = sum(prob_values)
         print("p_sum", prob_sum)
 
-        '''eğer sınıflandırmaya çalıştığımız değer
-           sınıflar için eşit olasılkta ise'''
+        '''eğer sınıflandırmaya çalıştığımız değer,
+           sınıflar için eşit olasılıkta ise'''
         if prob_sum == 0:
             number_classes = len(self.nbclasses)
             pl = []
@@ -306,7 +306,7 @@ c = Classifier(cls["male"], cls["female"])
 '''
 Bir özellik olan uzunluk(heigts) değerine göre bir sınıflandırıcı
  oluşturuldu ve 130 ile 220 değerleri arasındaki değerler ile
- bu geğrlerin hangi cinsiyete ait bir değer olabileceğini kontrol et
+ bu değerlerin hangi cinsiyete ait bir değer olabileceğini kontrol et
 '''
 
 for i in range(130, 220, 5):
@@ -320,7 +320,7 @@ Verilerde 140 ile 144 arasında bir boya sahip ne erkek ne de kadın
 '''
 
 '''
-İsim özellikleri ile bir sınıflanrıcı eğitildi ve test
+İsim özellikleri ile bir sınıflandırıcı eğitildi ve test
  isimlerindeki(testnames) isimlerin hangi cinsiyete ait olabileceği
  gösterildi.
 '''
@@ -353,7 +353,7 @@ Jessie Washington 159cm boyunda.
  olduğunu görülür.
 
 Peki ya "Jessie" adı verilen ve boyu bilinmeyen bir kişi için
- nasıl bir sonuç alnabilir? Bu kişi bir kadın mı yoksa erkek mi?
+ nasıl bir sonuç alınabilir? Bu kişi bir kadın mı yoksa erkek mi?
  Bu soruyu cevaplamak için iki farklı özellik ile eğitilmiş
  sınıflandırıcı kullanıldı ve çıktılar yazdırıldı.
 '''
