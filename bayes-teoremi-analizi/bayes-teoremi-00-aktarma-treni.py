@@ -10,6 +10,8 @@ kaynak:
 https://www.python-course.eu/naive_bayes_classifier_introduction.php
 '''
 
+# grafik için bakınız: ./figure_in-time-too-late.png
+
 '''
 @params "in_time" :
  Hamburg treninin, aktarma treni olan Münih trenini yakalamak için

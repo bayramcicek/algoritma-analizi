@@ -10,6 +10,8 @@ kaynak:
 https://www.python-course.eu/naive_bayes_classifier_introduction.php
 '''
 
+# grafik için bakınız: ./figure_male-female.png
+
 '''
 ./data.txt :
  boy, ağırlık, cinsiyet bilgilerinin bulunduğu rasgele 100 kişi içerir.
@@ -18,11 +20,11 @@ https://www.python-course.eu/naive_bayes_classifier_introduction.php
  sınıflandırma için kullanacak sınıf.
 
 @params "male", "female" :
- Naive Bayes sınıflarıdan sadece 100 ölçüm değeri vardır.
+ Naive Bayes sınıflarıdan sadece 50 ölçüm değeri vardır.
  
 @params "bin_width" :
  değerini 5 olarak ayarlamamız durumunda değerler
- "135 ila 139", "140 ila 144" aralıklarına bölünecektir.
+ "135 ila 139", "140 ila 144" ... aralıklarına bölünecektir.
 
 @function "frekans" :
  belirli bir özellik değerinin hangi aralıkta tanımlı olduğunu ve
@@ -68,7 +70,7 @@ class Feature:
             self.min, self.max = min(data), max(data)
 
             '''minimum değerden başlayıp maksimum değere kadar
-               verilen artış miktarı(bin_width) ile bir liste oluşturduk.'''
+               verilen artış miktarı(bin_width)ile bir liste oluştur'''
             bins = np.arange((self.min // bin_width) * bin_width,
                              (self.max // bin_width) * bin_width,
                              bin_width)
@@ -140,7 +142,7 @@ class NBclass:
             return 0
         else:
             # değerin hangi olasılıkta ortaya çıktığını döndür.
-            # print("return1",feature.frekans(feature_value) / feature.freq_sum)
+            print("return1", feature.frekans(feature_value) / feature.freq_sum)
             return feature.frekans(feature_value) / feature.freq_sum
 
 
@@ -166,51 +168,59 @@ for gender in genders:
 plt.legend(loc='upper right')
 plt.show()
 
-
 '''
-Alttaki kod ile, bir özellik yani uzunluk özelliği(heigts) ile NBclass sınıfı oluşturduk. Daha önce
-oluşturduğumuz fts özellik sınıflarını kullandık.
+Uzunluk özelliği(heigts) ile NBclass sınıfı pluşturuldu.
+ Daha önce oluşturulan ftrs özellik sınıflarını kullanıldı.
 '''
 cls = {}
 for gender in genders:
     cls[gender] = NBclass(gender, fts[gender])
-print("----------------------------------------------------------------------------------------")
+
+print("------------------------------------------>person\n\n")
+
+'''
+Basit bir Navie Bayes sınıfı oluşturmak için son adım 
+ "NBclass" ve "Feature" sınıflarını kullanacak bir
+ "Classifer" sınıfı yaratmak gerekir.
+'''
 
 
-# -------------------------------------------------------------------------------------------------------------------------
-# Basit bir Navie Bayes sınıfı oluşturmak için son adım "NBclass" ve "Feature" sınıflarımızı kullanacak bir
-# "Classifer sınıfı yazmamız gerekmektedir.
 class Classifier:
 
     def __init__(self, *nbclasses):
         self.nbclasses = nbclasses
 
     def prob(self, *d, best_only=True):
-        print("------------------")
+        print("------------------>prob")
         nbclasses = self.nbclasses
         probability_list = []
         for nbclass in nbclasses:
             ftrs = nbclass.features
             prob = 1
 
-            # "Verilen değerin hangi sınıfta  bulunabileceğinin olaslıklasal olarak değerini yazdırdık"
+            '''Verilen değerin hangi sınıfta bulunabileceğinin
+               olasılıksal olarak değerini yazdır'''
             for i in range(len(ftrs)):
                 prob *= nbclass.probability_value_given_feature(d[i], ftrs[i])
                 print("prob", prob)
 
-            # Olasılıklarını hesapladığımız değeri bulunabileceği sınıf ve olaslık değeri ile listeye ekledik.
+            '''Olasılıkları hesaplanan değeri, bulunabileceği
+               sınıf ve olasılık değeri ile listeye ekle'''
             probability_list.append((prob, nbclass.name))
             print("plist", probability_list)
 
-        # değişkenlerin olaslık değerlerini  "prob_values" değişkenine liste olarak atadık.
+        '''değişkenlerin olaslık değerlerini "prob_values"
+           değişkenine liste olarak ata'''
         prob_values = [f[0] for f in probability_list]
         print("p_values", prob_values)
 
-        # değişkenlerin olaslık değerlerinin toplamını  "prob_sum" değişkenine liste olarak atadık.
+        '''değişkenlerin olasılık değerlerinin toplamını
+           "prob_sum" değişkenine liste olarak ata'''
         prob_sum = sum(prob_values)
         print("p_sum", prob_sum)
 
-        # Eğer sınıflandırmaya çalıştığımız değeri sınfılar için eşit olasılkta ise
+        '''eğer sınıflandırmaya çalıştığımız değer
+           sınıflar için eşit olasılkta ise'''
         if prob_sum == 0:
             number_classes = len(self.nbclasses)
             pl = []
@@ -219,9 +229,10 @@ class Classifier:
             probability_list = pl
             print("plist1", probability_list)
 
-        # p_values değerlerini sırayla prob_sum değerlerine böldük
+        # p_values değerlerini sırayla prob_sum değerlerine böl.
         else:
-            probability_list = [(p[0] / prob_sum, p[1]) for p in probability_list]
+            probability_list = [(p[0] / prob_sum,
+                                 p[1]) for p in probability_list]
             print("plist2", probability_list)
         if best_only:
             return max(probability_list)
@@ -231,24 +242,32 @@ class Classifier:
 
 c = Classifier(cls["male"], cls["female"])
 
-print("----------------------------------------------------------------------------------------")
-# -------------------------------------------------------------------------------------------------------------------------
-# Bir özellik olan uzunluk(heigts) değerine göre  bir sınıflandırıc oluşturduk ve 130 ile 220 değerleri arasındaki
-# değerlerle hangi cinsiyete ait bir değer olabileceğini kontrol ettik.
+'''
+Bir özellik olan uzunluk(heigts) değerine göre bir sınıflandırıcı
+ oluşturuldu ve 130 ile 220 değerleri arasındaki değerler ile
+ bu geğrlerin hangi cinsiyete ait bir değer olabileceğini kontrol et
+'''
 
 for i in range(130, 220, 5):
     print(i, c.prob(i, best_only=False))
-print("----------------------------------------------------------------------------------------")
+print("------------------------------------------>for")
 
-# Eğitim veristemizde 140 ile 144 arasında bir boya sahip ne erkek ne de kadin olmadığından dolayı sınıflandırıcımız sonucu
-# daha önceki verilere dayandıramaz ve bu nedenle yüzde 50 yüzde 50 olucak şekilde bir çıktı verir.
+'''
+Verilerde 140 ile 144 arasında bir boya sahip ne erkek ne de kadın
+ olmadığından dolayı sınıflandırıcı, sonucu daha önceki verilere
+ dayandıramaz ve bu nedenle %50 %50 olacak şekilde bir çıktı verir.
+'''
 
+'''
+İsim özellikleri ile bir sınıflanrıcı eğitildi ve test
+ isimlerindeki(testnames) isimlerin hangi cinsiyete ait olabileceği
+ gösterildi.
+'''
 
-# -------------------------------------------------------------------------------------------------------------------------
-# İsim özellikleri ile bir sınıflanrıcı eğittik ve test isimlerindeki(testnames) isimlerin hangi cinsiyete ait olabileceğini
-# gösterdik.
-
-# "Jessie" isminin belirsiz bir isim olduğunu görüyoruz. Bu isimde 100 kişi için 66 kadın ismi olduğu görülmektedir.
+'''
+"Jessie" isminin belirsiz bir isim olduğu görülür.
+ Bu isimde 100 kişi için 66 kadın ismi olduğu görülmektedir.
+'''
 fts = {}
 cls = {}
 for gender in genders:
@@ -263,13 +282,19 @@ for name in testnames:
     print(name, c.prob(name))
 
 [person for person in persons if person[0] == "Jessie"]
-print("----------------------------------------------------------------------------------------")
+print("------------------------------------------>person")
 
-# -------------------------------------------------------------------------------------------------------------------------
-# "Jessie Washington 159cm boyunda. Boy verisi ile eğitilmiş sınıflandırıcımıza bakacak olursak 159 cm boyunda bir insanın "Kadin"
-# olma olasılığının 0.875 olduğunu görebiliriz. Peki ya "Jessie" adı verilen ve boyu bilinmeyen bir kişi için nasıl bir sonuç alırız?
-# Bu kiş bir kadın mıdır yoksa erkek mi? Bu soruyu cevaplamak için iki farklı özellik ile eğitilmiş sınıflandırıcısını kullandık ve
-# çıktıları yazdırdık.
+'''
+Jessie Washington 159cm boyunda.
+ Boy verisi ile eğitilmiş sınıflandırıcıya bakacak olursak
+ 159cm boyunda bir insanın "Kadın" olma olasılığının 0.875
+ olduğunu görülür.
+
+Peki ya "Jessie" adı verilen ve boyu bilinmeyen bir kişi için
+ nasıl bir sonuç alnabilir? Bu kişi bir kadın mı yoksa erkek mi?
+ Bu soruyu cevaplamak için iki farklı özellik ile eğitilmiş
+ sınıflandırıcı kullanıldı ve çıktılar yazdırıldı.
+'''
 
 cls = {}
 for gender in genders:
@@ -283,4 +308,72 @@ c = Classifier(cls["male"], cls["female"])
 for d in [("Maria", 140), ("Anthony", 200), ("Anthony", 153),
           ("Jessie", 188), ("Jessie", 159), ("Jessie", 160)]:
     print(d, c.prob(*d, best_only=False))
-print("----------------------------------------------------------------------------------------")
+
+'''
+output:
+
+female:
+['Stephanie', 'Cynthia', 'Katherine', 'Elizabeth', 'Carol', 'Christina', 'Beverly', 'Sharon', 'Denise', 'Rebbecca']
+[149 174 183 138 145 161 179 162 148 196]
+male:
+['Randy', 'Jessie', 'David', 'Stephen', 'Jerry', 'Billy', 'Earl', 'Todd', 'Martin', 'Kenneth']
+[184 175 187 192 204 180 184 174 177 200]
+bins  [155 160 165 170 175 180 185 190 195 200 205]
+male {155: 1, 160: 5, 165: 4, 170: 6, 175: 7, 180: 5, 185: 8, 190: 8, 195: 2, 200: 3}
+bins  [130 135 140 145 150 155 160 165 170 175 180 185 190]
+female {130: 1, 135: 1, 140: 0, 145: 3, 150: 5, 155: 7, 160: 8, 165: 11, 170: 7, 175: 2, 180: 4, 185: 0}
+------------------------------------------>person
+
+
+------------------>prob
+return1 0.0
+prob 0.0
+plist [(0.0, 'male')]
+return1 0.02040816326530612
+prob 0.02040816326530612
+plist [(0.0, 'male'), (0.02040816326530612, 'female')]
+p_values [0.0, 0.02040816326530612]
+p_sum 0.02040816326530612
+plist2 [(0.0, 'male'), (1.0, 'female')]
+130 [(0.0, 'male'), (1.0, 'female')]
+------------------>prob
+return1 0.0
+prob 0.0
+plist [(0.0, 'male')]
+return1 0.02040816326530612
+prob 0.02040816326530612
+plist [(0.0, 'male'), (0.02040816326530612, 'female')]
+p_values [0.0, 0.02040816326530612]
+p_sum 0.02040816326530612
+plist2 [(0.0, 'male'), (1.0, 'female')]
+135 [(0.0, 'male'), (1.0, 'female')]
+------------------>prob
+return1 0.0
+prob 0.0
+plist [(0.0, 'male')]
+return1 0.0
+prob 0.0
+plist [(0.0, 'male'), (0.0, 'female')]
+p_values [0.0, 0.0]
+p_sum 0.0
+plist1 [(0.5, 'male'), (0.5, 'female')]
+140 [(0.5, 'male'), (0.5, 'female')]
+------------------>prob
+return1 0.0
+prob 0.0
+plist [(0.0, 'male')]
+return1 0.061224489795918366
+prob 0.061224489795918366
+plist [(0.0, 'male'), (0.061224489795918366, 'female')]
+p_values [0.0, 0.061224489795918366]
+p_sum 0.061224489795918366
+plist2 [(0.0, 'male'), (1.0, 'female')]
+145 [(0.0, 'male'), (1.0, 'female')]
+------------------>prob
+
+...
+...
+...
+
+Process finished with exit code 0
+'''
