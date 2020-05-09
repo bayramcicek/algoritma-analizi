@@ -13,11 +13,11 @@ https://www.python-course.eu/naive_bayes_classifier_introduction.php
 # grafik için bakınız: ./figure_in-time-too-late.png
 
 '''
-@params "in_time" :
+@list "in_time" :
  Hamburg treninin, aktarma treni olan Münih trenini yakalamak için
  zamanında gelmesini temsil eder.
  
-@params "too_late" :
+@list "too_late" :
  aktarma trenin kaçırılmış olduğu durumları gösteren
  birkaç haftayı kapsayan verilerdir.
  
@@ -65,17 +65,24 @@ Yani burada koşullu olasılık vardır. Bayes teoremi'ne göre aktarma
 in_time_dict = dict(in_time)
 too_late_dict = dict(too_late)
 
-
+# counter = 0
+'''
+counter değişkeni sadece 1 defa çalışır.
+ bu yüzden karmaşıklık -> O(1)
+'''
 def catch_the_train(min):
     s = in_time_dict.get(min, 0)
-
+    # global counter
     if s == 0:
         return 0
     else:
+        # counter += 1
         m = too_late_dict.get(min, 0)
+        # print("counter -> ", counter)
         return s / (s + m)
 
 
+# karmaşıklık -> O(1)
 for minutes in range(0, 13):
     print(minutes, catch_the_train(minutes))
 

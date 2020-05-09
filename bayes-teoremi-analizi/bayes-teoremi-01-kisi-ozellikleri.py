@@ -19,7 +19,7 @@ https://www.python-course.eu/naive_bayes_classifier_introduction.php
 @class "feature" :
  sınıflandırma için kullanacak sınıf.
 
-@params "male", "female" :
+@genders "male", "female" :
  Naive Bayes sınıflarıdan sadece 50 ölçüm değeri vardır.
  
 @params "bin_width" :
