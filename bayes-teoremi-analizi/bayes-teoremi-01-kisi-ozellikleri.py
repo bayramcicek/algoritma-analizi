@@ -59,13 +59,20 @@ Veri kümesinin boy değerleri için iki özellik sınıfı oluşturuldu.
 
 
 class Feature:
+    '''
+    counter değişkeni sadece 1 defa çalışır.
+     bu yüzden karmaşıklık -> O(1)
+    '''
 
     def __init__(self, data, name=None, bin_width=None):
         self.name = name
         self.bin_width = bin_width
 
-        if bin_width:
+        # global counter
+        # counter += 1
+        # print("counter -> ", counter)
 
+        if bin_width:
             # dosyadan minimum ve maksimum değerleri al.
             self.min, self.max = min(data), max(data)
 
@@ -105,10 +112,19 @@ class Feature:
             self.freq_sum = sum(self.freq_dict.values())
 
     def frekans(self, value):
+        '''
+        counter değişkeni sadece 1 defa çalışır.
+         bu yüzden karmaşıklık -> O(1)
+        '''
+
+        # global counter
+        # counter += 1
+        # print("counter -> ", counter)
+
         if self.bin_width:
             # verilen değerin hangi aralığa denk geldiğini bul.
             value = (value // self.bin_width) * self.bin_width
-            # print("value ",value)
+            # print
         if value in self.freq_dict:
             '''verilen değerin bulunduğu aralıkta
                kaç tane daha değer olduğunu bul.'''
@@ -131,7 +147,17 @@ class NBclass:
         self.features = features
         self.name = name
 
+    '''
+    counter değişkeni sadece 1 defa çalışır.
+     bu yüzden karmaşıklık -> O(1)
+    '''
+
     def probability_value_given_feature(self, feature_value, feature):
+
+        # global counter
+        # counter += 1
+        # print("counter -> ", counter)
+
         """
         p_value_given_feature returns the probability p
         for a feature_value 'value' of the feature to occurr
@@ -172,11 +198,11 @@ plt.show()
 Uzunluk özelliği(heigts) ile NBclass sınıfı pluşturuldu.
  Daha önce oluşturulan ftrs özellik sınıflarını kullanıldı.
 '''
-cls = {}
-for gender in genders:
-    cls[gender] = NBclass(gender, fts[gender])
-
-print("------------------------------------------>person\n\n")
+# cls = {}
+# for gender in genders:
+#     cls[gender] = NBclass(gender, fts[gender])
+#
+# print("------------------------------------------>person\n\n")
 
 '''
 Basit bir Navie Bayes sınıfı oluşturmak için son adım 
@@ -184,25 +210,60 @@ Basit bir Navie Bayes sınıfı oluşturmak için son adım
  "Classifer" sınıfı yaratmak gerekir.
 '''
 
+counter = 0
+
 
 class Classifier:
 
     def __init__(self, *nbclasses):
         self.nbclasses = nbclasses
 
+    '''
+    prob fonksiyonu veri sayısı kadar çağırılır.
+     veri sayısını n kabul ettiğimiz için ve alt döngülerin
+     karmaşıklığı da O(4n) olduğundan dolayı tüm prob fonksiyonun
+     karmaşıklık düzeyi -> O(4n^2) 'den yaklaşık -> O(n^2)
+    '''
+
     def prob(self, *d, best_only=True):
         print("------------------>prob")
         nbclasses = self.nbclasses
         probability_list = []
+
+        # global counter
+        # counter += 1
+        # print("counter -> ", counter)
+
         for nbclass in nbclasses:
             ftrs = nbclass.features
             prob = 1
+            print("prob", prob)
+
+            # counter += 1
+            # print("counter -> ", counter)
+            '''
+            counter değişkeni sadece (sınıf_sayısı * veri_sayısı)
+             kadar çalışır.
+             
+            burada sınıf sayısı 2 olduğundan ve
+             veri sayısını n kabul edersek
+             karmaşıklık düzeyi -> O(2n) 'den yaklaşık -> O(n)
+            '''
 
             '''Verilen değerin hangi sınıfta bulunabileceğinin
                olasılıksal olarak değerini yazdır'''
             for i in range(len(ftrs)):
                 prob *= nbclass.probability_value_given_feature(d[i], ftrs[i])
-                print("prob", prob)
+
+                # counter += 1
+                # print("counter -> ", counter)
+                '''
+                counter değişkeni sadece sınıf sayısı kadar çalışır.
+                 burada sınıf sayımız 2 olduğundan dolayı
+                 2 kez çalışır.
+                 
+                 bu yüzden karmaşıklık -> O(2) -> O(c)
+                '''
 
             '''Olasılıkları hesaplanan değeri, bulunabileceği
                sınıf ve olasılık değeri ile listeye ekle'''
@@ -268,6 +329,7 @@ Verilerde 140 ile 144 arasında bir boya sahip ne erkek ne de kadın
 "Jessie" isminin belirsiz bir isim olduğu görülür.
  Bu isimde 100 kişi için 66 kadın ismi olduğu görülmektedir.
 '''
+
 fts = {}
 cls = {}
 for gender in genders:
