@@ -11,10 +11,13 @@ https://www.python-course.eu/naive_bayes_classifier_introduction.php
 '''
 
 '''
-@params "in_time", Hamburg treninin, aktarma treni olan Münih trenini
- yakalamak için zamanında gelmesini,
-@params "too_late" ise aktarma trenin kaçırılmış olduğu durumları
- gösteren birkaç haftayı kapsayan verilerdir.
+@params "in_time" :
+ Hamburg treninin, aktarma treni olan Münih trenini yakalamak için
+ zamanında gelmesini temsil eder.
+ 
+@params "too_late" :
+ aktarma trenin kaçırılmış olduğu durumları gösteren
+ birkaç haftayı kapsayan verilerdir.
  
 Her listenin içindeki ikili elemanların
  1.ci bileşeni: trenin kaç dakika geç kaldığını gösterir.
@@ -27,6 +30,7 @@ Her listenin içindeki ikili elemanların
 in_time = [(0, 22), (1, 19), (2, 17), (3, 18),
            (4, 16), (5, 15), (6, 9), (7, 7),
            (8, 4), (9, 3), (10, 3), (11, 2)]
+
 too_late = [(6, 6), (7, 9), (8, 12), (9, 17),
             (10, 18), (11, 15), (12, 16), (13, 7),
             (14, 8), (15, 5)]
@@ -47,9 +51,9 @@ plt.show()
 Grafik için bakınız: ./figure_in-time-too-late.png
 
 Bu verilere bakarak, Hamburg treninin 5 ve daha az dakika geç kalması
- durumunda, aktarma trenini yakalama olasılığımız 1'dir.
+ durumunda, aktarma trenini yakalama olasılığı 1'dir.
 
-12. dakikadan sonra ise aktarma trenine yetişme olasılığımız 0'a düşer.
+12. dakikadan sonra ise aktarma trenine yetişme olasılığı 0'a düşer.
     
 Yani burada koşullu olasılık vardır. Bayes teoremi'ne göre aktarma
  trenine yetişebilme ihtimalini ölçebilmemiz için önce Hamburg treninin
@@ -62,6 +66,7 @@ too_late_dict = dict(too_late)
 
 def catch_the_train(min):
     s = in_time_dict.get(min, 0)
+
     if s == 0:
         return 0
     else:

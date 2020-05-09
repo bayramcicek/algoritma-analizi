@@ -27,7 +27,7 @@ Carl Bryant 201 122.0 male
 Sharon Cooper 162 62 female
 Denise Bryant 148 49 female
 Brian King 171 50.0 male
-Rebecca Jenkins 196 86 female
+Rebbecca Jenkins 196 86 female
 Alice Sanders 163 46 female
 Ashley Mitchell 159 37 female
 Anthony Anderson 163 53.0 male

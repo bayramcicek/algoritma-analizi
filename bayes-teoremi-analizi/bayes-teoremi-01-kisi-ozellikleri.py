@@ -10,24 +10,35 @@ kaynak:
 https://www.python-course.eu/naive_bayes_classifier_introduction.php
 '''
 
+'''
+./data.txt :
+ boy, ağırlık, cinsiyet bilgilerinin bulunduğu rasgele 100 kişi içerir.
 
-# data.txt adlı dosya  boy, ağırlık, ve cinsiyet bilgilerinin bulunduğu rasgele 100 kişi içermektedir.
+@class "feature" :
+ sınıflandırma için kullanacak sınıf.
 
-# Sınıflandırma için kullanacağımız "feature" isimli bir sınıf tanımladık. Özellik değerlerinin sayısal olduğu
-# durumlarda, olası özellik değerlerini azaltmak için bunları bölmek isteyebiliriz. Kişilerin  boyları geni bir
-# aralığa sahiptir ve Naive Bayes sınıflarımızdan "male" ve "female" için sadece 50 ölçüm değerine sahibiz.
-# bin_width değerini 5 olarak ayarlamamız durumunda değerleri "130 ila 134", "135 ila 139", "140 ila 144" aralıklarına
-# bölmüş olacağız. frekans metodu belirli bir özellik değerinin hangi tanımlı aralıkta olduğunu ve bu aralıkta kaç tane
-# benzer değer olduğunu döndüren metottur.
+@params "male", "female" :
+ Naive Bayes sınıflarıdan sadece 100 ölçüm değeri vardır.
+ 
+@params "bin_width" :
+ değerini 5 olarak ayarlamamız durumunda değerler
+ "135 ila 139", "140 ila 144" aralıklarına bölünecektir.
+
+@function "frekans" :
+ belirli bir özellik değerinin hangi aralıkta tanımlı olduğunu ve
+ bu aralıkta kaç tane benzer değer olduğunu döndüren fonksiyondur.
+'''
 
 genders = ["male", "female"]
 persons = []
+
 with open("data.txt") as fh:
     for line in fh:
         persons.append(line.strip().split())
 
 firstnames = {}
 heights = {}
+
 for gender in genders:
     firstnames[gender] = [x[0] for x in persons if x[4] == gender]
     heights[gender] = [x[2] for x in persons if x[4] == gender]
@@ -38,53 +49,67 @@ for gender in ("female", "male"):
     print(firstnames[gender][:10])
     print(heights[gender][:10])
 
+'''
+Veri kümesinin boy değerleri için iki özellik sınıfı oluşturuldu.
+ Sınıflardan biri "male" sınıfının değerlerini
+ diğeri ise "female" sınıfının değerlerini içerir.
+'''
 
-# -------------------------------------------------------------------------------------------------------------------------
-# Veri kümesinin boy değerleri için iki özellik sınıfı oluşturduk. Sınıflardan biri "male" sınıfının
-# değerlerini diğeri ise "female" sınıfının değerlerini içerir.
+
 class Feature:
 
     def __init__(self, data, name=None, bin_width=None):
         self.name = name
         self.bin_width = bin_width
+
         if bin_width:
-            # Verideki(data) minimum ve maksimum değerleri elde ettik.
+
+            # dosyadan minimum ve maksimum değerleri al.
             self.min, self.max = min(data), max(data)
 
-            # minimum değerden başlayıp maksimum değere kadar  verilen artış miktarı(bin_width) ile bir liste oluşturduk.
+            '''minimum değerden başlayıp maksimum değere kadar
+               verilen artış miktarı(bin_width) ile bir liste oluşturduk.'''
             bins = np.arange((self.min // bin_width) * bin_width,
                              (self.max // bin_width) * bin_width,
                              bin_width)
             print("bins ", bins)
 
-            # Verideki(data) verilerin hangi aralıkta ve ne sıklıkta(freq) geçtiğiniliste olarak elde ettik.
+            '''dosyadaki verilerin hangi aralıkta ve
+               ne sıklıkta(freq) geçtiğini liste olarak oluştur.'''
             freq, bins = np.histogram(data, bins)
             # print("bins ",bins)
             # print("freq",freq)
 
-            # frekans değerlerini ve frekans değerlerine karşılık gelen aralıklardan bir dict elde ettik.
+            '''frekans değerlerini ve bu frekans değerlerine
+               karşılık gelen aralıklardan bir dict oluştur.'''
             self.freq_dict = dict(zip(bins, freq))
             # print("freq dict",dict(zip(bins, freq)))
             # print("freq dict2", dict(Counter(data)))
-            # frekans toplamını, yani üzerinde çalıştığımız veri stenin boyutunu elde ettik.
+
+            # frekans toplamını elde et.
             self.freq_sum = sum(freq)
             # print("freq_sum",sum(freq))
             # print("freq_sum2", sum(self.freq_dict.values()))
+
         else:
-            # herhangi bir aralık değeri verilmediği durumda
-            # frekans toplamını, yani üzerinde çalıştığımız veri stenin boyutunu elde ettik.
+            '''herhangi bir aralık değeri verilmediği durumda frekans
+               toplamını, yani üzerinde çalıştığımız verilerin
+               boyutunu elde et.'''
             self.freq_dict = dict(Counter(data))
-            # herhangi bir aralık değeri verilmediği durumda
-            # veri içerisinde geçen her farklı değer için frekans değerini elde ettik
+
+            '''herhangi bir aralık değeri verilmediği durumda
+               veri içerisinde geçen her farklı değer için
+               frekans değerini üret.'''
             self.freq_sum = sum(self.freq_dict.values())
 
     def frekans(self, value):
         if self.bin_width:
-            # verilen değerin hangi aralığa denk geldiğini elde ettik.
+            # verilen değerin hangi aralığa denk geldiğini bul.
             value = (value // self.bin_width) * self.bin_width
             # print("value ",value)
         if value in self.freq_dict:
-            # verilen değerin bulunduğu aralıkta kaç tane daha değer olduğunu elde ettik.
+            '''verilen değerin bulunduğu aralıkta
+               kaç tane daha değer olduğunu bul.'''
             # print("freq_dict3",self.freq_dict[value])
             return self.freq_dict[value]
 
@@ -92,9 +117,12 @@ class Feature:
             return 0
 
 
-# -------------------------------------------------------------------------------------------------------------------------
-# Bir naive bayes sınıfı (NBsinifi) tasarladık. Bir NBsinifi bir veya birden daha fazla Ozellik  sınıfı içerir.
-# NBs bir veya birden fazla Feature sınıfı içerir. NBclass adı self.name içinde saklanır.
+'''
+@class "NBclass" :
+ Bir NBclass 1 veya 1'den fazla Feature sınıfı içerir.
+'''
+
+
 class NBclass:
 
     def __init__(self, name, *features):
@@ -104,22 +132,25 @@ class NBclass:
     def probability_value_given_feature(self, feature_value, feature):
         """
         p_value_given_feature returns the probability p
-        for a feature_value 'value' of the feature  to occurr
+        for a feature_value 'value' of the feature to occurr
         corresponds to P(d_i | p_j)
         where d_i is a feature variable of the feature i
         """
-
         if feature.freq_sum == 0:
             return 0
         else:
-            # değerin hangi olasılıkta ortaya çıkıtğını döndürdük.
+            # değerin hangi olasılıkta ortaya çıktığını döndür.
             # print("return1",feature.frekans(feature_value) / feature.freq_sum)
             return feature.frekans(feature_value) / feature.freq_sum
 
 
-# -------------------------------------------------------------------------------------------------------------------------
-# Listelere frekanslara göre sınıfları yazdırdık ve bu değerlerin nasıl dağıldığını bir sütun grafiği ile görselleştirdik.
+'''
+Frekanslara göre listelere yaz ve bu değerlerin
+ nasıl dağıldığını bir sütun grafiği ile görselleştir.
+'''
+
 fts = {}
+
 for gender in genders:
     fts[gender] = Feature(heights[gender], name=gender, bin_width=5)
     print(gender, fts[gender].freq_dict)
@@ -134,12 +165,12 @@ for gender in genders:
 
 plt.legend(loc='upper right')
 plt.show()
-print("----------------------------------------------------------------------------------------")
+
 
 '''
-# -------------------------------------------------------------------------------------------------------------------------
-# Alttaki kod ile, bir özellik yani uzunluk özelliği(heigts) ile NBclass sınıfı oluşturduk. Daha önce
-# oluşturduğumuz fts özellik sınıflarını kullandık.
+Alttaki kod ile, bir özellik yani uzunluk özelliği(heigts) ile NBclass sınıfı oluşturduk. Daha önce
+oluşturduğumuz fts özellik sınıflarını kullandık.
+'''
 cls = {}
 for gender in genders:
     cls[gender] = NBclass(gender, fts[gender])
@@ -253,4 +284,3 @@ for d in [("Maria", 140), ("Anthony", 200), ("Anthony", 153),
           ("Jessie", 188), ("Jessie", 159), ("Jessie", 160)]:
     print(d, c.prob(*d, best_only=False))
 print("----------------------------------------------------------------------------------------")
-'''
