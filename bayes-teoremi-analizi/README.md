@@ -2,12 +2,12 @@
 ---
 ### aktarma trenine yetişebilme olasılığı grafiği:
 
-![figure_in-time-too-late.png](bayes-teoremi-analizi/figure_in-time-too-late.png)
+![figure_in-time-too-late.png](./figure_in-time-too-late.png)
 
 ---
 ### boy - cinsiyet olasılık grafiği:
 
-![figure_male-female.png](bayes-teoremi-analizi/figure_male-female.png)
+![figure_male-female.png](./figure_male-female.png)
 
 ---
 kaynaklar:
