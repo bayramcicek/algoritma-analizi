@@ -82,7 +82,10 @@ def catch_the_train(min):
         return s / (s + m)
 
 
-# karmaşıklık -> O(1)
+'''
+range ne kadar belirlenmiş ise o kadar çalışacak
+ bu yüzden karmaşıklık -> O(n)
+'''
 for minutes in range(0, 13):
     print(minutes, catch_the_train(minutes))
 
