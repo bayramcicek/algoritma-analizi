@@ -120,8 +120,6 @@ def palindrom_bul():
 
 
 list = []
-
-
 # fonksiyon tek sefer çalışır. karmaşıklık -> O(1)
 def abc_test_et():
     global list
