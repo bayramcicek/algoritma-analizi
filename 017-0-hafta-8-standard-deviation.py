@@ -10,7 +10,7 @@ ortalama ve varsans için grafiğini çizip sonuçlarını
 linear-binary search karmaşıklığını dikkate alarak yorumlayınız.
 
 hata -> varyans'a bağlıdır.
-varyans arttıkça daha fazla sample almak gerekir. çünkü
+varyans arttıkça sample elemanlarını arttırmak gerekir. çünkü
 hata artmış demektir.
 standart sapma = karekök(varyans)
 
