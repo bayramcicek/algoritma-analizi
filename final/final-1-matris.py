@@ -14,9 +14,17 @@ Elemanlar random olarak belirlenecektir.
 def matris(m, n):
     rows = m
     cols = n
-    matrix = [['0'] * cols for _ in range(rows)]
+    letters = 'abcdefghijklmnopqrstuvwxyz'
 
-    return matrix
+    # listeyi başlat
+    list_2d = [['0'] * cols for _ in range(rows)]
+
+    # listeye rastgele harf ata
+    for i in range(rows):
+        for k in range(cols):
+            list_2d[i][k] = letters[(random.randint(0, 25))]
+
+    return list_2d
 
 
-print(matris(4, 2))
+print(matris(5, 5))
