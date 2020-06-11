@@ -8,7 +8,7 @@ append() için O(1)'dir. -> toplam karmaşıklık -> yaklaşık O(n) olur.
 fakat amortized cost'ta, sistemin n operasyonda
 bir defa worst case'e girmesi ile append() 
 karmaşıklığı -> O(n) olur. Bu da toplam karmaşıklığı
-append()'in worst case'e girdiği durumlarda -> O(n^2) yapar. '''
+append()'in worst case'e girdiği durumlarda -> O(2n) yapar. '''
 def vektor_olustur(n):
     # vektörü başlat.
     vektor_list = []
