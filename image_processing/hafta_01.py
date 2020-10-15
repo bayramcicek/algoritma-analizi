@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 list_1 = [1, 2, 3, 4, 5]
 
 # görüntü 2 boyutlu bir veridir -> x, y
-image_1 = plt.imread('pic_1.jpeg')
+image_1 = plt.imread('pic_1.jpg')
 # pixel, 400x600 resolution, dpi(dots per inch)
 
 print(type(image_1))  # <class 'numpy.ndarray'> elemanlar aynı tip olmalı

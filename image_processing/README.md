@@ -6,4 +6,13 @@
 
 ---
 
+### figure_2_90.png:
+
+![canakkale](figure_2_90.png)
+
+---
+### figure_3_normal.png:
+
+![canakkale](figure_3_normal.png)
+
 
