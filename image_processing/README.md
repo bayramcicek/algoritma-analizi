@@ -15,4 +15,10 @@
 
 ![canakkale](figure_3_normal.png)
 
+---
+### home_gray_bw.png:
+
+![canakkale](home_gray_bw.png)
+
+
 
