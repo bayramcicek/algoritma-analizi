@@ -4,6 +4,14 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
+'''
+türev   
+
+renk değişimlerinin nerelerde olduğunu yakalamak için yapılan sayısal türev işlemi 
+sobel edge detection
+
+
+'''
 
 def get_mask_for_edge():
     return np.array([-1, 0, 1, -2, 0, 2, -1, 0, 1]).reshape(3, 3)

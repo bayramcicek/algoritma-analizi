@@ -2,6 +2,13 @@
 # created by cicek on Nov 17, 2020 11:01 PM
 
 # mean medyan filter - resim üzerinde istenmeyen küçük noktaları yok etmek.
+# blurlamak. resimlerde silgi var o resmi bulurluyor -> örneğin
+
+'''
+istenmeyen noktaları yok etmek için 3x3 lük mask uyguladık.
+Bu aşamada ayrıntılar biraz kaybolabilir.
+
+'''
 
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg

@@ -11,7 +11,9 @@ image_1 = plt.imread('pic_1.jpg')
 # pixel, 400x600 resolution, dpi(dots per inch)
 
 print(type(image_1))  # <class 'numpy.ndarray'> elemanlar aynı tip olmalı
-print(image_1.shape)  # (480, 360, 3) -> (-y(satır), x(stun), her pixeldeki veri - rgb)
+# type -> nasıl bi veri yapısı
+# ndarray da tek bir tür var.
+print(image_1.shape)  # kaç pixel var -> (480, 360, 3) -> (-y(satır), x(stun), her pixeldeki veri - rgb)
 # PC'şer için sol üst orijin'dir.
 
 print(image_1[0, 0, 0])  # 110
@@ -41,13 +43,13 @@ BW (1 bit), -> .shape -> x,y
 gray level (1 byte), -> .shape -> x,y
 
 color-map
-digital image processing
+digital image processing -> 2boyutlu veriyi alıp yine görüntü verir sonuç olarak.
 computer vision
-pinhole camera model
+pinhole camera model -> resmin matematiksel modellemesi, (3d uzaydan -> )bu modelin ürettiği 2 boyutlu veridir. 
 - intensity transformation -> tek pixele bakılıyorsa
 - filter, morphology, spatial -> komşu pixellere bakılıyorsa
 - frequency analysis
-- mask
+- mask  -> zel amaçlı yazılmış fonk.lar -> resimde çember var mı vs. ile resmi tarar.
 - OCR MNIST object
 - NN CNN RNN DL
 """
@@ -55,3 +57,13 @@ pinhole camera model
 # sudo pacman -S tk
 plt.imshow(image_1)
 plt.show()  # figure_1.png
+
+'''
+video -> resimlerin zamana bağlı olarak n tanesidir.
+resim -> 2 boyutlu veri. bu veri de pixeller var bunlar da 3 tane(RGB) verinin
+    bir araya gelmesiyle oluşturulmuştur. 
+    
+    bu pixeller RGB, bw, veya gray level(tek ton ama farklı yoğunluk) olabilir.
+    
+image alınıp veriye bi bilgi döner    
+'''

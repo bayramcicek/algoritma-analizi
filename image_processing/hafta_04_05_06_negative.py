@@ -1,13 +1,17 @@
 #!/usr/bin/python3
 # created by cicek on Nov 12, 2020 8:49 PM
 
-# intensity information -> bir pixeldeki enerji seviyesi.
+# intensity information -> bir pixeldeki enerji seviyesi. (RGB)
+# herhangi bir pixeli alıp oradaki renigine göre karar verip başka bir resim oluşturmak.
+
+# bir fonksiyona sayısal değer atıyoruz bu fonk başka bi sayısal değer üretiyor.
 
 import os
 import matplotlib.pyplot as plt
 import numpy as np
 
 
+# bir intensity değerini başka bir intensity değerine çeviriyor.
 # intensity arttırır
 def my_f_1(a, b):
     assert a >= 0
@@ -18,6 +22,7 @@ def my_f_1(a, b):
         return 255
 
 
+# intensity ile ->  resmin negatifini almış olduk
 def my_f_2(a):
     # assert a >= 0
     # var = "intensity pozitive", "error intensity not positive"

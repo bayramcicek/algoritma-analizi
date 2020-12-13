@@ -25,7 +25,7 @@ def my_f_2(a):
     return int(255 - a)
 
 
-# gamma function
+# gamma function    -> belli aralıktaki bi renk yoğunluğunu açmak/kapamak (değiştirmek)
 def my_f_3(image_001, gamma):
     return np.power(image_001 / float(np.max(image_001)), gamma)
 

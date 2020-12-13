@@ -3,6 +3,8 @@
 
 # dilation - erosion - openin and closing
 
+# örnek -> bir harf a mı b mi belirlemek için. eski yazıları belirlemek.
+
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -106,23 +108,23 @@ img_2 = convert_rgb_to_monochrome_bw(img_1, 0.5)
 # img_4 = my_dilation(img_3, define_mask_1())
 # img_5 = my_dilation(img_4, define_mask_1())
 
-# # opening process
-# img_3 = my_dilation(img_2, define_mask_1(), 'erosion')  # sihaylar artar
-# img_4 = my_dilation(img_3, define_mask_1(), 'erosion')
-# img_5 = my_dilation(img_4, define_mask_1(), 'erosion')
+# opening process
+img_3 = my_dilation(img_2, define_mask_1(), 'erosion')  # sihaylar artar
+img_4 = my_dilation(img_3, define_mask_1(), 'erosion')
+img_5 = my_dilation(img_4, define_mask_1(), 'erosion')
+
+img_6 = my_dilation(img_5, define_mask_1(), 'dilation')  # beyazlat
+img_7 = my_dilation(img_6, define_mask_1(), 'dilation')
+img_8 = my_dilation(img_7, define_mask_1(), 'dilation')
+
+# # closing process
+# img_3 = my_dilation(img_2, define_mask_1(), 'dilation')  # beyazlat
+# img_4 = my_dilation(img_3, define_mask_1(), 'dilation')
+# img_5 = my_dilation(img_4, define_mask_1(), 'dilation')
 #
-# img_6 = my_dilation(img_5, define_mask_1(), 'dilation')  # beyazlat
-# img_7 = my_dilation(img_6, define_mask_1(), 'dilation')
-# img_8 = my_dilation(img_7, define_mask_1(), 'dilation')
-
-# closing process
-img_3 = my_dilation(img_2, define_mask_1(), 'dilation')  # beyazlat
-img_4 = my_dilation(img_3, define_mask_1(), 'dilation')
-img_5 = my_dilation(img_4, define_mask_1(), 'dilation')
-
-img_6 = my_dilation(img_5, define_mask_1(), 'erosion')  # siyahlat
-img_7 = my_dilation(img_6, define_mask_1(), 'erosion')
-img_8 = my_dilation(img_7, define_mask_1(), 'erosion')
+# img_6 = my_dilation(img_5, define_mask_1(), 'erosion')  # siyahlat
+# img_7 = my_dilation(img_6, define_mask_1(), 'erosion')
+# img_8 = my_dilation(img_7, define_mask_1(), 'erosion')
 
 plt.subplot(1, 4, 1), plt.imshow(img_1)
 plt.subplot(1, 4, 2), plt.imshow(img_2, cmap='gray')

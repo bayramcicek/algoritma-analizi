@@ -74,7 +74,7 @@ im_2 = convert_rgb_to_gray(im_1)
 
 # siyah beyaz resmi al
 im_3 = convert_rgb_to_bw(im_1)
-
+print(im_3.shape)
 # 3 jpeg resmi ekrana ver
 plt.subplot(1, 3, 1)
 plt.imshow(im_1)

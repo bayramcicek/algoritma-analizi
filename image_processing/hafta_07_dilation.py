@@ -1,7 +1,12 @@
 #!/usr/bin/python3
 # created by cicek on Nov 20, 2020 6:05 PM
 
-# dilation - genişletme
+# dilation - genişletme(sulandırma)
+'''
+resmin içindeki objeyi kenarlarına doğru genişletiyor.
+arka plan 0 ise resmin kenarlarındaki 0 ları 1 yapar
+
+'''
 
 import matplotlib.pyplot as plt
 import math
