@@ -108,8 +108,27 @@ print(perceptron.W)  # [-3.  2.  1.] şeklinde bir model oluştu
 
 3. Bu class ile dersimize kayıtlı 40 öğrenci için imza tanıması yapılırsa
    X ve d değerlerini ne olur, predict fonksiyonu nasıl kullanılır açıklayınız
+    imza verileri siyah/beyaz duruma çevrilirse dizi:
+    [[1 1 1 ... 1 1 1]
+     [0 1 1 ... 1 1 1]
+     [1 1 1 ... 1 1 1]
+     ...
+     [0 0 0 ... 0 0 0]
+     [0 0 0 ... 0 0 0]
+     [0 0 0 ... 0 0 0]]
+     
+     Öyleyse; (her resim verisi için)
+     X = np.array([
+        [1 1 1 ... 1 1 1]
+        [0 1 1 ... 1 1 1]
+        [1 1 1 ... 1 1 1]
+        ...
+        [0 0 0 ... 0 0 0]
+        [0 0 0 ... 0 0 0]
+        [0 0 0 ... 0 0 0]
+    ])
     
-    d = np.array([0, 0, 0, 1])  # XOR, X ise 40x2 'lik bir dizi olur.
+    d = np.array([0, 0, 0, 1])  # AND
     
     def predict(self, x):
         x = np.insert(x, 0, 1)
@@ -117,8 +136,8 @@ print(perceptron.W)  # [-3.  2.  1.] şeklinde bir model oluştu
         a = self.activation_fn(z)
         return a
     
+    Her 40 imza verisi için farklı modeller oluşturulur.
+    
 4. Bu modelin hatası nasıl elde edilir, kendi çözümünüzü/yorumunuzu yazınız.
-
-
 
 """
