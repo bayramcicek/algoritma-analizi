@@ -130,14 +130,16 @@ print(perceptron.W)  # [-3.  2.  1.] şeklinde bir model oluştu
     
     d = np.array([0, 0, 0, 1])  # AND
     
-    def predict(self, x):
-        x = np.insert(x, 0, 1)
-        z = self.W.T.dot(x)
-        a = self.activation_fn(z)
-        return a
+    predict(self, x) fonksiyonunda verilerin dot çarpımı yapılıp activation
+     fonksiyonuna yollayıp her imza için farklı bi değer bulunur.
     
     Her 40 imza verisi için farklı modeller oluşturulur.
     
 4. Bu modelin hatası nasıl elde edilir, kendi çözümünüzü/yorumunuzu yazınız.
+
+    Her xn ve wn çarpımları alınıp toplandığında ve activation
+      fonksiyondan > 0 ise true, değilse false döner fakat
+      bu model XOR gibi linearly separable olmayan veriler
+      için doğru sonucu vermez.
 
 """
