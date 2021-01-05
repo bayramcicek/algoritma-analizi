@@ -11,6 +11,7 @@ CNN - Convolutional neural network(deeplearning 'te en fazla kul. mimari)
 RNN -> Recurrent neural network
 
 perceptron -> MLP -> CNN
+-> (Wtranspose . x) +b
 
 input -> işleme -> output
 input bilgisini alıp işleyip dışarıya output vermek: perceptron

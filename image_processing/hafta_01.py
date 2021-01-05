@@ -15,7 +15,6 @@ print(type(image_1))  # <class 'numpy.ndarray'> elemanlar aynı tip olmalı
 # ndarray da tek bir tür var.
 print(image_1.shape)  # kaç pixel var -> (480, 360, 3) -> (-y(satır), x(stun), her pixeldeki veri - rgb)
 # PC'şer için sol üst orijin'dir.
-
 print(image_1[0, 0, 0])  # 110
 print(image_1[0, 0, 1])  # 136
 print(image_1[0, 0, 2])  # 229
